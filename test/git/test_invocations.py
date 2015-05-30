@@ -45,6 +45,7 @@ class _Invocations(common.Common):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
             virtualenv.create_environment(venv_dir)
+        self.run_in_venv(venv_dir, venv_dir, "pip", "install", "-U", "setuptools")
         return venv_dir
 
     def run_in_venv(self, venv, workdir, command, *args):
