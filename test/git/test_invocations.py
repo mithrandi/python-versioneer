@@ -54,13 +54,7 @@ class _Invocations(common.Common):
                 "easy_install": os.path.join(venv, "bin", "easy_install"),
                 }
         if command == "pip":
-            maj, min = sys.version_info[0:2]
-            if ((maj == 2 and min >= 7) or
-                (maj == 3 and min >= 4) or
-                maj > 3):
-                # We prefer pip --isolated, but py2.6/py3.2/py3.3 (at least
-                # on travis) can't handle the --no-user-cfg that it uses
-                args = ["--isolated"] + list(args)
+            args = ["--isolated"] + list(args)
         return self.command(bins[command], *args, workdir=workdir)
 
     def check_in_venv(self, venv):
